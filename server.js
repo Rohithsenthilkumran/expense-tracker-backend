@@ -9,8 +9,12 @@ const mongoose=require('mongoose')
 const app=express();
 app.use(express.json())
 app.get('/',async(req,res)=>{
+    try{
    const ex=await Expense.find({})
     res.send(ex);
+    }catch(err){
+        res.send(err);
+    }
 })
 
 const port = process.env.PORT || 8000
@@ -77,5 +81,5 @@ app.get('/home',(req,res)=>{
     res.send("Home");
 })
 app.listen(port,()=>{
-    console.log(`server running on 2001 ${port}`);
+    console.log(`server running on ${port}`);
 })
